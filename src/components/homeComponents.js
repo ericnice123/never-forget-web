@@ -16,6 +16,26 @@ class Home extends Component {
 }
 
 class Header extends Component {
+    constructor() {
+        super();
+
+        this.summarySelection = {
+            currentMonthSummary: "Current Month Summary",
+            currentYearSummary: "Current Year Summary",
+            totalSummary: "Total Summary"
+        }
+
+        this.state = {
+            summarySelection: "Select Summary Type"
+        }
+    }
+
+    onSelectSummaryItem(summarySelection) {
+        this.setState({
+            summarySelection: summarySelection
+        });
+    }
+
     render() {
         return (
             <Navbar bg="light" expand="lg">
@@ -23,14 +43,19 @@ class Header extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                        <NavDropdown title={this.state.summarySelection} id="basic-nav-dropdown">
+                            <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.currentMonthSummary)}
+                                href="#action/3.1">
+                                {this.summarySelection.currentMonthSummary}
+                            </NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.currentYearSummary)}
+                                href="#action/3.2">
+                                {this.summarySelection.currentYearSummary}
+                            </NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.totalSummary)}
+                                href="#action/3.3">
+                                {this.summarySelection.totalSummary}
+                            </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Form inline>
