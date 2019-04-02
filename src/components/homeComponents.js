@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, Jumbotron, Row, Col } from "react-bootstrap";
 import { RadialChart, Hint } from 'react-vis';
+import { AppConsumer } from './appProviderComponent';
 import "../style/style.css";
-
 
 class Home extends Component {
     render() {
@@ -38,32 +38,38 @@ class Header extends Component {
 
     render() {
         return (
-            <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="#home">Never Forget</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <NavDropdown title={this.state.summarySelection} id="basic-nav-dropdown">
-                            <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.currentMonthSummary)}
-                                href="#action/3.1">
-                                {this.summarySelection.currentMonthSummary}
-                            </NavDropdown.Item>
-                            <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.currentYearSummary)}
-                                href="#action/3.2">
-                                {this.summarySelection.currentYearSummary}
-                            </NavDropdown.Item>
-                            <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.totalSummary)}
-                                href="#action/3.3">
-                                {this.summarySelection.totalSummary}
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
-                    <Form inline>
-                        <Button variant="outline-warning">SignIn</Button>
-                        <Button variant="outline-success">LogIn</Button>
-                    </Form>
-                </Navbar.Collapse>
-            </Navbar>
+            <div>
+                <AppConsumer>
+                    {(context) => (
+                        <Navbar bg="light" expand="lg">
+                            <Navbar.Brand href="#home">Never Forget</Navbar.Brand>
+                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                            <Navbar.Collapse id="basic-navbar-nav">
+                                <Nav className="mr-auto">
+                                    <NavDropdown title={this.state.summarySelection} id="basic-nav-dropdown">
+                                        <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.currentMonthSummary)}
+                                            href="#action/3.1">
+                                            {this.summarySelection.currentMonthSummary}
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.currentYearSummary)}
+                                            href="#action/3.2">
+                                            {this.summarySelection.currentYearSummary}
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.totalSummary)}
+                                            href="#action/3.3">
+                                            {this.summarySelection.totalSummary}
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+                                </Nav>
+                                <Form inline>
+                                    <Button variant="outline-warning">SignIn</Button>
+                                    <Button variant="outline-success">LogIn</Button>
+                                </Form>
+                            </Navbar.Collapse>
+                        </Navbar>
+                    )}
+                </AppConsumer>
+            </div>
         )
     }
 }
