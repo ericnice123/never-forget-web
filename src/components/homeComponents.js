@@ -18,22 +18,6 @@ class Home extends Component {
 class Header extends Component {
     constructor() {
         super();
-
-        this.summarySelection = {
-            currentMonthSummary: "Current Month Summary",
-            currentYearSummary: "Current Year Summary",
-            totalSummary: "Total Summary"
-        }
-
-        this.state = {
-            summarySelection: "Select Summary Type"
-        }
-    }
-
-    onSelectSummaryItem(summarySelection) {
-        this.setState({
-            summarySelection: summarySelection
-        });
     }
 
     render() {
@@ -46,18 +30,18 @@ class Header extends Component {
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="mr-auto">
-                                    <NavDropdown title={this.state.summarySelection} id="basic-nav-dropdown">
-                                        <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.currentMonthSummary)}
+                                    <NavDropdown title={context.state.summarySelectionState.currentSelection} id="basic-nav-dropdown">
+                                        <NavDropdown.Item onClick={() => context.setSummarySelectionState(context.state.summarySelectionState.currentMonthSummary)}
                                             href="#action/3.1">
-                                            {this.summarySelection.currentMonthSummary}
+                                            {context.state.summarySelectionState.currentMonthSummary}
                                         </NavDropdown.Item>
-                                        <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.currentYearSummary)}
+                                        <NavDropdown.Item onClick={() => context.setSummarySelectionState(context.state.summarySelectionState.currentYearSummary)}
                                             href="#action/3.2">
-                                            {this.summarySelection.currentYearSummary}
+                                            {context.state.summarySelectionState.currentYearSummary}
                                         </NavDropdown.Item>
-                                        <NavDropdown.Item onClick={() => this.onSelectSummaryItem(this.summarySelection.totalSummary)}
+                                        <NavDropdown.Item onClick={() => context.setSummarySelectionState(context.state.summarySelectionState.totalSummary)}
                                             href="#action/3.3">
-                                            {this.summarySelection.totalSummary}
+                                            {context.state.summarySelectionState.totalSummary}
                                         </NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
@@ -66,6 +50,9 @@ class Header extends Component {
                                     <Button variant="outline-success">LogIn</Button>
                                 </Form>
                             </Navbar.Collapse>
+                            <button onClick={() => console.log(context.state)}>
+                                button
+                            </button>
                         </Navbar>
                     )}
                 </AppConsumer>
@@ -108,15 +95,15 @@ class Summary extends Component {
                         </Col>
                         <Col>
                             <Row>
-                                <div class="foo blue"></div>
+                                <div className="foo blue"></div>
                                 <p>Food</p>
                             </Row>
                             <Row>
-                                <div class="foo purple"></div>
+                                <div className="foo purple"></div>
                                 <p>Movies</p>
                             </Row>
                             <Row>
-                                <div class="foo wine"></div>
+                                <div className="foo wine"></div>
                                 <p>Rent</p>
                             </Row>
                         </Col>
