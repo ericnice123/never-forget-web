@@ -50,9 +50,6 @@ class Header extends Component {
                                     <Button variant="outline-success">LogIn</Button>
                                 </Form>
                             </Navbar.Collapse>
-                            <button onClick={() => console.log(context.state)}>
-                                button
-                            </button>
                         </Navbar>
                     )}
                 </AppConsumer>
@@ -62,56 +59,85 @@ class Header extends Component {
 }
 
 class Summary extends Component {
-    state = {
-        value: false
-    };
-    render() {
-        const { value } = this.state;
 
+    getTotalSpending() {
+        const contextValue = this.context;
+        var spendings = contextValue.state.currentMonthData.spendings;
+        var total = spendings.food.total + spendings.entertainment.total + spendings.housing.total + spendings.others.total;
+        return total;
+    }
+
+    getData() {
+        const contextValue = this.context;
+
+        var spendings = contextValue.state.currentMonthData.spendings;
+        this.list = [];
+
+        console.log(spendings.food);
+        console.log(spendings.entertainment);
+        console.log(spendings.housing);
+        console.log(spendings.others);
+    }
+
+    render() {
         return (
-            <Jumbotron>
-                <Container>
-                    <Row>
-                        <Col>
-                            <RadialChart
-                                className={'donut-chart-example'}
-                                innerRadius={100}
-                                radius={140}
-                                getAngle={d => d.theta}
-                                colorType="literal"
-                                data={[
-                                    { theta: 2, className: 'custom-class', color: "red" },
-                                    { theta: 6, className: 'custom-class2', color: 'green' },
-                                    { theta: 2, color: "blue" },
-                                    { theta: 3, color: "black" },
-                                    { theta: 1, color: "purple" }
-                                ]}
-                                onValueMouseOver={v => this.setState({ value: v })}
-                                onSeriesMouseOut={v => this.setState({ value: false })}
-                                width={300}
-                                height={300}
-                                padAngle={0.04}
-                            />
-                        </Col>
-                        <Col>
+            <AppConsumer>
+                {(context) => (
+                    <Jumbotron>
+                        <Container>
                             <Row>
-                                <div className="foo blue"></div>
-                                <p>Food</p>
+                                <Col>
+                                    <RadialChart
+                                        className={'donut-chart-example'}
+                                        innerRadius={100}
+                                        radius={140}
+                                        getAngle={d => d.theta}
+                                        colorType="literal"
+                                        data={[
+                                            { theta: context.state.currentMonthData.spendings.food.total, color: "red" },
+                                            { theta: context.state.currentMonthData.spendings.entertainment.total, color: 'green' },
+                                            { theta: context.state.currentMonthData.spendings.housing.total, color: "blue" },
+                                            { theta: context.state.currentMonthData.spendings.others.total, color: "black" }
+                                        ]}
+                                        onValueMouseOver={v => this.setState({ value: v })}
+                                        onSeriesMouseOut={v => this.setState({ value: false })}
+                                        width={300}
+                                        height={300}
+                                        padAngle={0.04}
+                                        showLabels={true}
+                                    />
+                                </Col>
+                                <Col>
+                                    <Row>
+                                        <div className="foo red"></div>
+                                        <p>Food, costs: {context.state.currentMonthData.spendings.food.total}</p>
+                                    </Row>
+                                    <Row>
+                                        <div className="foo green"></div>
+                                        <p>Entertainment, costs: {context.state.currentMonthData.spendings.entertainment.total}</p>
+                                    </Row>
+                                    <Row>
+                                        <div className="foo blue"></div>
+                                        <p>Housing, costs: {context.state.currentMonthData.spendings.housing.total}</p>
+                                    </Row>
+                                    <Row>
+                                        <div className="foo black"></div>
+                                        <p>Others, costs: {context.state.currentMonthData.spendings.others.total}</p>
+                                    </Row>
+                                    <Row>
+                                        <div className="foo black"></div>
+                                        <p>Total Spending: {this.getTotalSpending()}</p>
+                                    </Row>
+                                </Col>
                             </Row>
-                            <Row>
-                                <div className="foo purple"></div>
-                                <p>Movies</p>
-                            </Row>
-                            <Row>
-                                <div className="foo wine"></div>
-                                <p>Rent</p>
-                            </Row>
-                        </Col>
-                    </Row>
-                </Container>
-            </Jumbotron>
+                        </Container>
+                    </Jumbotron>
+                )}
+            </AppConsumer>
         )
     }
 }
+Summary.contextType = AppConsumer; // This part is important to access context values
+
 
 export default Home;

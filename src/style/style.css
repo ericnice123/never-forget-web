@@ -6,14 +6,18 @@ margin: 5px;
 border: 1px solid rgba(0, 0, 0, .2);
 }
 
+.red {
+background: red;
+}
+
 .blue {
-background: #13b4ff;
+background: blue;
 }
 
-.purple {
-background: #ab3fdd;
+.green {
+background: green;
 }
 
-.wine {
-background: #ae163e;
+.black {
+background: black;
 }
