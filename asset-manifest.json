@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/never-forget-web/static/css/main.dd300c82.chunk.css",
+    "main.js": "/never-forget-web/static/js/main.35e9ffac.chunk.js",
+    "main.js.map": "/never-forget-web/static/js/main.35e9ffac.chunk.js.map",
+    "runtime~main.js": "/never-forget-web/static/js/runtime~main.71a2abf1.js",
+    "runtime~main.js.map": "/never-forget-web/static/js/runtime~main.71a2abf1.js.map",
+    "static/css/2.090dce78.chunk.css": "/never-forget-web/static/css/2.090dce78.chunk.css",
+    "static/js/2.8c632b59.chunk.js": "/never-forget-web/static/js/2.8c632b59.chunk.js",
+    "static/js/2.8c632b59.chunk.js.map": "/never-forget-web/static/js/2.8c632b59.chunk.js.map",
+    "index.html": "/never-forget-web/index.html",
+    "precache-manifest.23726d30cc41b202077d8bb5efda163c.js": "/never-forget-web/precache-manifest.23726d30cc41b202077d8bb5efda163c.js",
+    "service-worker.js": "/never-forget-web/service-worker.js",
+    "static/css/2.090dce78.chunk.css.map": "/never-forget-web/static/css/2.090dce78.chunk.css.map",
+    "static/css/main.dd300c82.chunk.css.map": "/never-forget-web/static/css/main.dd300c82.chunk.css.map"
+  }
+}
