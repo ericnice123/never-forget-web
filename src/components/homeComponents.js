@@ -119,56 +119,9 @@ class Summary extends Component {
         return (
             <AppConsumer>
                 {(context) => (
-                    <Jumbotron>
-                        <Container>
-                            <Row>
-                                <Col>
-                                    {/*                                     <RadialChart
-                                        className={'donut-chart-example'}
-                                        innerRadius={100}
-                                        radius={140}
-                                        getAngle={d => d.theta}
-                                        colorType="literal"
-                                        data={[
-                                            { theta: context.state.currentMonthData.spendings.food.total, color: "red" },
-                                            { theta: context.state.currentMonthData.spendings.entertainment.total, color: 'green' },
-                                            { theta: context.state.currentMonthData.spendings.housing.total, color: "blue" },
-                                            { theta: context.state.currentMonthData.spendings.others.total, color: "black" }
-                                        ]}
-                                        onValueMouseOver={v => this.setState({ value: v })}
-                                        onSeriesMouseOut={v => this.setState({ value: false })}
-                                        width={300}
-                                        height={300}
-                                        padAngle={0.04}
-                                        showLabels={true}
-                                    /> */}
-                                    <MyResponsivePie data={data} />
-                                </Col>
-                                <Col>
-                                    <Row>
-                                        <div className="foo red"></div>
-                                        <p>Food, costs: {context.state.currentMonthData.spendings.food.total}</p>
-                                    </Row>
-                                    <Row>
-                                        <div className="foo green"></div>
-                                        <p>Entertainment, costs: {context.state.currentMonthData.spendings.entertainment.total}</p>
-                                    </Row>
-                                    <Row>
-                                        <div className="foo blue"></div>
-                                        <p>Housing, costs: {context.state.currentMonthData.spendings.housing.total}</p>
-                                    </Row>
-                                    <Row>
-                                        <div className="foo black"></div>
-                                        <p>Others, costs: {context.state.currentMonthData.spendings.others.total}</p>
-                                    </Row>
-                                    <Row>
-                                        <div className="foo black"></div>
-                                        <p>Total Spending: {this.getTotalSpending()}</p>
-                                    </Row>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Jumbotron>
+                    <Container style={{ height: 600 }}>
+                        <MyResponsivePie data={data} />
+                    </Container>
                 )}
             </AppConsumer>
         )
@@ -185,18 +138,20 @@ const MyResponsivePie = ({ data /* see data tab */ }) => (
     <ResponsivePie
         data={data}
         margin={{
-            "top": 40,
-            "right": 80,
-            "bottom": 80,
-            "left": 80
+            "top": 100,
+            "right": 60,
+            "bottom": 90,
+            "left": 50
         }}
-        innerRadius={0.5}
-        padAngle={0.7}
-        cornerRadius={3}
-        colors={{
-            "scheme": "nivo"
-        }}
-        borderWidth={1}
+        innerRadius={0.7}
+        padAngle={0.6}
+        cornerRadius={5}
+        colors={
+            [
+                "red", "green", "blue", "yellow", "rgba(99, 95, 9)"
+            ]
+        }
+        borderWidth={2}
         borderColor={{
             "from": "color",
             "modifiers": [
